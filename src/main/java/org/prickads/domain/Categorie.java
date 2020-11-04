@@ -12,7 +12,6 @@ import java.util.List;
 public class Categorie {
 
     @Id
-    @GeneratedValue
     private long id;
 
     private String naam;
@@ -24,6 +23,11 @@ public class Categorie {
     }
 
     public Categorie(String naam) {
+        this.naam = naam;
+    }
+
+    public Categorie(long id, String naam) {
+        this.id = id;
         this.naam = naam;
     }
 

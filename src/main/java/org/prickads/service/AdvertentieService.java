@@ -7,23 +7,23 @@ import static org.prickads.SingleObjects.*;
 
 public class AdvertentieService {
 
-    Advertentie advertentie = new Advertentie();
-
-    public void haalOpCategorie() {
+    public long haalOpCategorie() {
 
         List<Categorie> categorieList = catDao.findAll();
 
-        System.out.println("Om een advertentie te plaatsen moeten wij eerst weten in welk categorie je advertentie valt. U kunt kiezen uit: \n");
+        System.out.println("Om een advertentie te plaatsen moeten wij eerst weten in welk categorie je advertentie valt. U kunt kiezen uit:");
         for(Categorie categorie : categorieList){
             System.out.print(categorie.getNaam() + ", ");
         }
+        System.out.println();
 
         long categorieID;
         do {
+            System.out.println("uit welke categorie kiest u?");
             String inputCategorie = scanner.nextLine();
-            inputCategorie = inputCategorie.trim();
+            inputCategorie = inputCategorie.trim().toLowerCase();
 
-            switch (inputCategorie.toLowerCase()) {
+            switch (inputCategorie) {
                 case "antiek":
                     categorieID = 1;
                     break;
@@ -58,21 +58,30 @@ public class AdvertentieService {
                     System.out.println("Uw ingevoerde categorie bestaat niet! Kies uit een van de opgesomde categoriën");
                     categorieID = 0;
             }
-            catDao.findByIdWithNamedQuery(categorieID);
 
         }while(categorieID == 0);
+        catDao.findByIdWithNamedQuery(categorieID);
+        return categorieID;
     }
 
     public void overigeDataAds(){
+        long id = haalOpCategorie();
+        Categorie catAanmakenAd = catDao.findByIdWithNamedQuery(id);
+
         System.out.println("Voer de naam in van je advertentie (*):");
         String inputNaam = scanner.nextLine();
-        advertentie.setNaam(inputNaam);
 
         System.out.println("Voeg een (korte) beschrijving toe (*): ");
         String inputOmschrijving = scanner.nextLine();
-        advertentie.setOmschrijving(inputOmschrijving);
 
+        boolean inputIsVerkocht = false;
 
+        System.out.println("Voeg een bijbehorende prijs toe (*): ");
+        double inputPrijs = scanner.nextDouble();
+
+        Advertentie advertentie = new Advertentie(inputNaam, catAanmakenAd, inputOmschrijving, inputPrijs, inputIsVerkocht);
+        adDao.insert(advertentie);
+        System.out.println("Succesvol opgeslagen van uw advertentie");
     }
 
 }

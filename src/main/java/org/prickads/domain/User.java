@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Builder
-@AllArgsConstructor
 @Entity
 public class User {
 
@@ -37,5 +35,15 @@ public class User {
     private List<Advertentie> advertenties = new ArrayList<>();
 
     public User() {
+    }
+
+    public User(String naam, String password, String email, String adres, String postcode, String woonplaats, boolean isAkkoord) {
+        this.naam = naam;
+        this.password = password;
+        this.email = email;
+        this.adres = adres;
+        this.postcode = postcode;
+        this.woonplaats = woonplaats;
+        this.isAkkoord = isAkkoord;
     }
 }

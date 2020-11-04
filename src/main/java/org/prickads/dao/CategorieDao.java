@@ -11,8 +11,9 @@ public class CategorieDao extends Dao<Categorie, Long> {
         super(em);
     }
 
-    public List<Categorie> findByIdWithNamedQuery(long id) {
-        TypedQuery<Categorie> query = em.createNamedQuery("Categorie.findAll", Categorie.class).setParameter("id", id);
-        return query.getResultList();
+    public Categorie findByIdWithNamedQuery(long id) {
+        TypedQuery<Categorie> query = em.createQuery("select e from Categorie e where e.id = :id", Categorie.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
     }
 }

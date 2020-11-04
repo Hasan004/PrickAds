@@ -10,16 +10,16 @@ import static org.prickads.SingleObjects.catDao;
 public class VulDatabase {
 
     public void voerUit(EntityManager em){
-        Categorie antiek = new Categorie("Antiek");
-        Categorie auto = new Categorie("Auto");
-        Categorie boeken = new Categorie("Boeken");
-        Categorie dieren = new Categorie("Dieren");
-        Categorie elektronica = new Categorie("Elektronica");
-        Categorie kleding = new Categorie("Kleding");
-        Categorie muziek = new Categorie("Muziek");
-        Categorie sport = new Categorie("Sport");
-        Categorie vouchers = new Categorie("Vouchers");
-        Categorie overige = new Categorie("Overige");
+        Categorie antiek = new Categorie(1, "Antiek");
+        Categorie auto = new Categorie(2, "Auto");
+        Categorie boeken = new Categorie(3, "Boeken");
+        Categorie dieren = new Categorie(4, "Dieren");
+        Categorie elektronica = new Categorie(5, "Elektronica");
+        Categorie kleding = new Categorie(6, "Kleding");
+        Categorie muziek = new Categorie(7, "Muziek");
+        Categorie sport = new Categorie(8, "Sport");
+        Categorie vouchers = new Categorie(9, "Vouchers");
+        Categorie overige = new Categorie(10,"Overige");
 
         catDao.insert(antiek);
         catDao.insert(auto);
