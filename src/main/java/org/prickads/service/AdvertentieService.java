@@ -1,10 +1,13 @@
 package org.prickads.service;
+import org.prickads.domain.Advertentie;
 import org.prickads.domain.Categorie;
 
 import java.util.List;
 import static org.prickads.SingleObjects.*;
 
 public class AdvertentieService {
+
+    Advertentie advertentie = new Advertentie();
 
     public void haalOpCategorie() {
 
