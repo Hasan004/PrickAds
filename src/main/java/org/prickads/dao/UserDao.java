@@ -1,6 +1,6 @@
-package Dao;
+package org.prickads.dao;
 
-import Domain.User;
+import org.prickads.domain.User;
 
 import javax.persistence.EntityManager;
 

@@ -1,4 +1,4 @@
-package Domain;
+package org.prickads.domain;
 
 import lombok.Data;
 
@@ -8,6 +8,7 @@ import java.util.List;
 
 @Data
 @Entity
+@NamedQuery(name = "Categorie.findAll", query = "SELECT c from Categorie c where c.id = :id")
 public class Categorie {
 
     @Id
@@ -33,4 +34,6 @@ public class Categorie {
     public void setNaam(String naam) {
         this.naam = naam;
     }
+
+
 }

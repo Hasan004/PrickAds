@@ -1,4 +1,4 @@
-package Domain;
+package org.prickads.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
 @Builder
 @AllArgsConstructor
 @Entity
@@ -37,5 +36,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Advertentie> advertenties = new ArrayList<>();
 
-
+    public User() {
+    }
 }

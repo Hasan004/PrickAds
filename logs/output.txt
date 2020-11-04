@@ -1,13 +1,22 @@
-[DEBUG] 2020-11-04 09:57:23.470 [main] SQL - create table User (user_id bigint not null, adres varchar(255), email varchar(255), isAkkoord bit not null, naam varchar(255), password varchar(255), postcode varchar(255), woonplaats varchar(255), primary key (user_id)) engine=InnoDB
-[DEBUG] 2020-11-04 09:57:23.793 [main] SQL - alter table Advertentie add constraint FK5y8ub1hyedlsnsknjkxl7f7o6 foreign key (categorie_id) references Categorie (id)
-[DEBUG] 2020-11-04 09:57:24.628 [main] SQL - alter table Advertentie add constraint FKfpetpvpfdax9qfrbk5x7xsf0f foreign key (user_user_id) references User (user_id)
-[DEBUG] 2020-11-04 09:57:26.168 [main] JtaPlatformInitiator - No JtaPlatform was specified, checking resolver
-[DEBUG] 2020-11-04 09:57:26.168 [main] JtaPlatformResolverInitiator - No JtaPlatformResolver was specified, using default [org.hibernate.engine.transaction.jta.platform.internal.StandardJtaPlatformResolver]
-[DEBUG] 2020-11-04 09:57:26.177 [main] StandardJtaPlatformResolver - Could not resolve JtaPlatform, using default [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-[INFO ] 2020-11-04 09:57:26.177 [main] JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-[DEBUG] 2020-11-04 09:57:26.177 [main] NamedQueryRepository - Checking 0 named HQL queries
-[DEBUG] 2020-11-04 09:57:26.177 [main] NamedQueryRepository - Checking 0 named SQL queries
-[DEBUG] 2020-11-04 09:57:26.178 [main] SessionFactoryRegistry - Registering SessionFactory: 15b1b852-94e1-460f-8f44-62394901559c (<unnamed>)
-[DEBUG] 2020-11-04 09:57:26.178 [main] SessionFactoryRegistry - Not binding SessionFactory to JNDI, no JNDI name configured
-[DEBUG] 2020-11-04 09:57:26.178 [main] StatisticsInitiator - Statistics initialized [enabled=false]
-[DEBUG] 2020-11-04 09:57:38.869 [Hibernate Connection Pool Validation Thread] DriverManagerConnectionProviderImpl - Connection pool now considered primed; min-size will be maintained
+[DEBUG] 2020-11-04 14:09:24.689 [main] SQL - select categorie0_.id as id1_1_, categorie0_.naam as naam2_1_ from Categorie categorie0_
+[DEBUG] 2020-11-04 14:09:24.714 [main] Loader - Result set row: 0
+[DEBUG] 2020-11-04 14:09:24.716 [main] Loader - Result row: EntityKey[org.prickads.domain.Categorie#1]
+[DEBUG] 2020-11-04 14:09:24.716 [main] Loader - Result set row: 1
+[DEBUG] 2020-11-04 14:09:24.717 [main] Loader - Result row: EntityKey[org.prickads.domain.Categorie#2]
+[DEBUG] 2020-11-04 14:09:24.717 [main] Loader - Result set row: 2
+[DEBUG] 2020-11-04 14:09:24.717 [main] Loader - Result row: EntityKey[org.prickads.domain.Categorie#3]
+[DEBUG] 2020-11-04 14:09:24.717 [main] Loader - Result set row: 3
+[DEBUG] 2020-11-04 14:09:24.717 [main] Loader - Result row: EntityKey[org.prickads.domain.Categorie#4]
+[DEBUG] 2020-11-04 14:09:24.717 [main] Loader - Result set row: 4
+[DEBUG] 2020-11-04 14:09:24.717 [main] Loader - Result row: EntityKey[org.prickads.domain.Categorie#5]
+[DEBUG] 2020-11-04 14:09:24.717 [main] Loader - Result set row: 5
+[DEBUG] 2020-11-04 14:09:24.717 [main] Loader - Result row: EntityKey[org.prickads.domain.Categorie#6]
+[DEBUG] 2020-11-04 14:09:24.717 [main] Loader - Result set row: 6
+[DEBUG] 2020-11-04 14:09:24.718 [main] Loader - Result row: EntityKey[org.prickads.domain.Categorie#7]
+[DEBUG] 2020-11-04 14:09:24.718 [main] Loader - Result set row: 7
+[DEBUG] 2020-11-04 14:09:24.718 [main] Loader - Result row: EntityKey[org.prickads.domain.Categorie#8]
+[DEBUG] 2020-11-04 14:09:24.718 [main] Loader - Result set row: 8
+[DEBUG] 2020-11-04 14:09:24.718 [main] Loader - Result row: EntityKey[org.prickads.domain.Categorie#9]
+[DEBUG] 2020-11-04 14:09:24.718 [main] Loader - Result set row: 9
+[DEBUG] 2020-11-04 14:09:24.718 [main] Loader - Result row: EntityKey[org.prickads.domain.Categorie#10]
+[DEBUG] 2020-11-04 14:09:24.727 [main] LogicalConnectionManagedImpl - Initiating JDBC connection release from afterTransaction

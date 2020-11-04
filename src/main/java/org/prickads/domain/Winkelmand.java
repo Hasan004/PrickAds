@@ -1,4 +1,4 @@
-package Domain;
+package org.prickads.domain;
 
 public class Winkelmand {
 

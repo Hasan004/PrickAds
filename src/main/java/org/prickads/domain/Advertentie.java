@@ -1,10 +1,7 @@
-package Domain;
+package org.prickads.domain;
 
 import lombok.Data;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @Entity

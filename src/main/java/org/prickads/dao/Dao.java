@@ -1,4 +1,4 @@
-package Dao;
+package org.prickads.dao;
 
 import javax.persistence.EntityManager;
 import java.lang.reflect.ParameterizedType;

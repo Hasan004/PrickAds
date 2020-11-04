@@ -1,6 +1,6 @@
-package Dao;
+package org.prickads.dao;
 
-import Domain.Advertentie;
+import org.prickads.domain.Advertentie;
 
 import javax.persistence.EntityManager;
 
@@ -8,4 +8,6 @@ public class AdvertentieDao extends Dao<Advertentie, Long> {
     public AdvertentieDao(EntityManager em) {
         super(em);
     }
+
+
 }
