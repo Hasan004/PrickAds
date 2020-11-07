@@ -28,15 +28,16 @@ public class Advertentie {
     public Advertentie() {
     }
 
-    public Advertentie(String naam, Categorie categorie, String omschrijving, double prijs, boolean isVerkocht) {
+    public Advertentie(String naam, Categorie categorie, String omschrijving, double prijs, boolean isVerkocht, User user) {
         this.naam = naam;
         this.omschrijving = omschrijving;
         this.prijs = prijs;
         this.isVerkocht = isVerkocht;
-//        this.user = user;
+        this.user = user;
         this.categorie = categorie;
     }
 
-
-
+    public boolean getVerkocht() {
+        return isVerkocht;
+    }
 }

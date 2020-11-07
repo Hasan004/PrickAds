@@ -5,6 +5,7 @@ import org.prickads.dao.CategorieDao;
 
 import org.prickads.dao.UserDao;
 import org.prickads.service.AdvertentieService;
+import org.prickads.service.UserService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,5 +21,5 @@ public class SingleObjects {
     public static AdvertentieDao adDao = new AdvertentieDao(em);
     public static AdvertentieService adservice = new AdvertentieService();
     public static Scanner scanner = new Scanner(System.in);
-
+    public static UserService userService = new UserService();
 }

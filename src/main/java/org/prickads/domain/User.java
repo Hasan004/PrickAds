@@ -46,4 +46,5 @@ public class User {
         this.woonplaats = woonplaats;
         this.isAkkoord = isAkkoord;
     }
+
 }

@@ -9,7 +9,7 @@ import static org.prickads.SingleObjects.catDao;
 
 public class VulDatabase {
 
-    public void voerUit(EntityManager em){
+    public void voerUit(){
         Categorie antiek = new Categorie(1, "Antiek");
         Categorie auto = new Categorie(2, "Auto");
         Categorie boeken = new Categorie(3, "Boeken");
