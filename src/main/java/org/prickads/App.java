@@ -5,7 +5,6 @@ import org.prickads.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.persistence.NoResultException;
 import java.util.List;
 
 import static org.prickads.SingleObjects.*;
@@ -20,7 +19,7 @@ public class App {
 
     private void run() {
 
-        User user = new User("he", "he", "he", "he",  "he", "he", true);
+        User user = new User("he", "he", "he", "he", "he", "he", true);
         User user2 = new User("rt", "rt", "rt", "rt", "rt", "rt", true);
         userDao.insert(user);
         userDao.insert(user2);
@@ -48,27 +47,44 @@ public class App {
                                 while (stop) {
                                     System.out.println("Advertentie MENU");
                                     line = "----------------------------------------------------------------------------------------------------------------------------------------------------";
-                                    System.out.println(line + "\n(1) - Advertentie plaatsen | (2) - Advertentie updaten | (3) - Advertentie verwijderen | 4 - Laat mijn Advertenties zien | (x) - Uitloggen\n" + line);
+                                    System.out.println(line + "\n(1) - Tijdline! | (2) - Advertentie plaatsen | (3) - Advertentie updaten | (4) - Advertentie verwijderen | (5) - Laat mijn Advertenties zien | (x) - Uitloggen\n" + line);
                                     String input = scanner.nextLine();
                                     switch (input) {
                                         case "1":
-                                            adservice.overigeDataAds(currentUser);
+                                            if (adDao.findAll().isEmpty()) {
+                                                System.out.println("Er zijn geen advertenties beschikbaar");
+                                                break;
+                                            }
+                                            List<Advertentie> advertentieList = adDao.findAll();
+                                            int count = 1;
+                                            for (Advertentie ad : advertentieList) {
+                                                count++;
+                                                if (!ad.getVerkocht()) {
+                                                    System.out.println(line + "\n(" + count + ") | Categorie: " + ad.getCategorie().getNaam() + " | Naam: " + ad.getNaam() + " | Omschrijving: " + ad.getOmschrijving() + " | Prijs: " + ad.getPrijs() + " | Verkoper: " + ad.getUser().getNaam() + "\n" + line);
+                                                }
+                                            }
+                                            System.out.println("Wilt u terug naar het menu?");
+                                            String terug = scanner.nextLine();
                                             break;
                                         case "2":
+                                            adservice.overigeDataAds(currentUser);
+                                            break;
+                                        case "3":
                                             if (isAdvertentieLeeg(currentUser)) break;
                                             System.out.println("Welke advertentie wilt u wijzigen? (Id van advertentie invoeren!)");
                                             adservice.updateAds(getAdvertentie(currentUser), currentUser.getUser_id());
                                             break;
-                                        case "3":
+                                        case "4":
                                             if (isAdvertentieLeeg(currentUser)) break;
                                             System.out.println("Welke advertentie wilt u verwijderen? (Id van advertentie invoeren!)");
                                             adservice.deleteAd(getAdvertentie(currentUser), currentUser.getUser_id());
                                             break;
-                                        case "4":
+                                        case "5":
                                             if (isAdvertentieLeeg(currentUser)) break;
                                             List<Advertentie> advertenties = adDao.findAll();
+                                            System.out.println("Dit zijn uw opgeslagen advertenties");
                                             for (Advertentie advertentie : advertenties) {
-                                                System.out.println("Dit zijn uw opgeslagen advertenties: \n" + advertentie.getId() + " - " + advertentie.getNaam());
+                                                System.out.println(advertentie.getId() + " - " + advertentie.getNaam());
                                             }
                                             break;
                                         case "x":
