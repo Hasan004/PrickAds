@@ -45,8 +45,8 @@ public class App {
                                 gelukt = false;
                                 boolean stop = true;
                                 while (stop) {
-                                    System.out.println("Advertentie MENU");
-                                    line = "----------------------------------------------------------------------------------------------------------------------------------------------------";
+                                    System.out.println("ADVERTENTIE MENU");
+                                    line = "---------------------------------------------------------------------------------------------------------------------------------------------------------------";
                                     System.out.println(line + "\n(1) - Tijdline! | (2) - Advertentie plaatsen | (3) - Advertentie updaten | (4) - Advertentie verwijderen | (5) - Laat mijn Advertenties zien | (x) - Uitloggen\n" + line);
                                     String input = scanner.nextLine();
                                     switch (input) {
@@ -63,8 +63,17 @@ public class App {
                                                     System.out.println(line + "\n(" + count + ") | Categorie: " + ad.getCategorie().getNaam() + " | Naam: " + ad.getNaam() + " | Omschrijving: " + ad.getOmschrijving() + " | Prijs: " + ad.getPrijs() + " | Verkoper: " + ad.getUser().getNaam() + "\n" + line);
                                                 }
                                             }
-                                            System.out.println("Wilt u terug naar het menu?");
+                                            System.out.println("Wilt u zoeken naar advertenties?");
                                             String terug = scanner.nextLine();
+                                            int countZoek = 0;
+                                            if (terug.trim().toLowerCase().equals("ja")) {
+                                                List<Advertentie> advertenties = adservice.simpelAdsZoeken();
+                                                for (Advertentie ad : advertenties) {
+                                                    countZoek++;
+                                                    System.out.println(line + "\n(" + countZoek + ") | Categorie: " + ad.getCategorie().getNaam() + " | Naam: " + ad.getNaam() + " | Omschrijving: " + ad.getOmschrijving() + " | Prijs: " + ad.getPrijs() + " | Verkoper: " + ad.getUser().getNaam() + "\n" + line);
+                                                }
+                                                break;
+                                            }
                                             break;
                                         case "2":
                                             adservice.overigeDataAds(currentUser);
@@ -81,7 +90,7 @@ public class App {
                                             break;
                                         case "5":
                                             if (isAdvertentieLeeg(currentUser)) break;
-                                            List<Advertentie> advertenties = adDao.findAll();
+                                            List<Advertentie> advertenties = adDao.findByUserId(currentUser.getUser_id());
                                             System.out.println("Dit zijn uw opgeslagen advertenties");
                                             for (Advertentie advertentie : advertenties) {
                                                 System.out.println(advertentie.getId() + " - " + advertentie.getNaam());

@@ -28,4 +28,13 @@ public class AdvertentieDao extends Dao<Advertentie, Long> {
         }
     }
 
+    public List<Advertentie> findByName(String adName) {
+        try {
+            TypedQuery<Advertentie> query = em.createQuery("select e from Advertentie e where e.naam LIKE :adNaam", Advertentie.class);
+            query.setParameter("adNaam", "%" + adName + "%");
+            return query.getResultList();
+        } catch (NoResultException e) { return null;
+        }
+    }
+
 }

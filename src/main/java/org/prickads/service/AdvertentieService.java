@@ -175,4 +175,10 @@ public class AdvertentieService {
             }
         }
     }
+
+    public List<Advertentie> simpelAdsZoeken() {
+        System.out.println("Op welk advertentienaam wilt u zoeken?");
+        String zoeken = scanner.nextLine();
+        return adDao.findByName(zoeken);
+    }
 }
