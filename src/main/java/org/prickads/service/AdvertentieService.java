@@ -4,70 +4,12 @@ import org.prickads.domain.Advertentie;
 import org.prickads.domain.Categorie;
 import org.prickads.domain.User;
 
-import java.util.List;
-
 import static org.prickads.SingleObjects.*;
 
 public class AdvertentieService {
 
-    public long haalOpCategorie() {
-        List<Categorie> categorieList = catDao.findAll();
-
-        System.out.println("U kunt kiezen uit de volgende categoriën:");
-        for (Categorie categorie : categorieList) {
-            System.out.print(categorie.getNaam() + ", ");
-        }
-        System.out.println();
-
-        long categorieID;
-        do {
-            System.out.println("uit welke categorie kiest u?");
-            String inputCategorie = scanner.nextLine();
-            inputCategorie = inputCategorie.trim().toLowerCase();
-
-            switch (inputCategorie) {
-                case "antiek":
-                    categorieID = 1;
-                    break;
-                case "auto":
-                    categorieID = 2;
-                    break;
-                case "boeken":
-                    categorieID = 3;
-                    break;
-                case "dieren":
-                    categorieID = 4;
-                    break;
-                case "elektronica":
-                    categorieID = 5;
-                    break;
-                case "kleding":
-                    categorieID = 6;
-                    break;
-                case "muziek":
-                    categorieID = 7;
-                    break;
-                case "sport":
-                    categorieID = 8;
-                    break;
-                case "vouchers":
-                    categorieID = 9;
-                    break;
-                case "overige":
-                    categorieID = 10;
-                    break;
-                default:
-                    System.out.println("Uw ingevoerde categorie bestaat niet! Kies uit een van de opgesomde categoriën");
-                    categorieID = 0;
-            }
-
-        } while (categorieID == 0);
-        catDao.findById(categorieID);
-        return categorieID;
-    }
-
-    public void overigeDataAds(User currentUser) {
-        long id = haalOpCategorie();
+    public void saveAdvertentie(User currentUser) {
+        long id = categorieService.haalOpCategorie();
         Categorie catAanmakenAd = catDao.findById(id);
 
         System.out.println("Voer de titel in van je advertentie (*):");
@@ -78,27 +20,11 @@ public class AdvertentieService {
 
         boolean inputIsVerkocht = false;
 
-        double prijs = getPrijs();
+        double prijs = advertentieHulpService.getPrijs();
 
         Advertentie advertentie = new Advertentie(inputNaam, catAanmakenAd, inputOmschrijving, prijs, inputIsVerkocht, currentUser);
         adDao.insert(advertentie);
         System.out.println("Succesvol opgeslagen van uw advertentie");
-    }
-
-    private double getPrijs() {
-        double prijs = 0;
-        boolean gelukt = true;
-        while (gelukt) {
-            try {
-                System.out.println("Voeg een bijbehorende prijs toe: ");
-                String inputPrijs = scanner.nextLine();
-                prijs = Double.parseDouble(inputPrijs);
-                gelukt = false;
-            } catch (NumberFormatException e) {
-                System.out.println("Onjuiste waarde ingevuld");
-            }
-        }
-        return prijs;
     }
 
     public void updateAds(long adId, long userId) {
@@ -106,7 +32,6 @@ public class AdvertentieService {
 
         if (advertentie == null) {
             System.out.println("Er bestaat geen data voor de opgegeven waarde!");
-            ;
         } else {
             System.out.println("Uw advertentiegegevens zijn:");
 
@@ -135,12 +60,12 @@ public class AdvertentieService {
                         break;
                     case "3":
                         System.out.println(bevestiging1);
-                        advertentie.setPrijs(getPrijs());
+                        advertentie.setPrijs(advertentieHulpService.getPrijs());
                         System.out.println(bevestiging2);
                         break;
                     case "4":
                         System.out.println("U heeft ervoor gekozen om de gegeven met nummer " + output1 + " te veranderen.");
-                        advertentie.setCategorie(catDao.findById(haalOpCategorie()));
+                        advertentie.setCategorie(catDao.findById(categorieService.haalOpCategorie()));
                         System.out.println(bevestiging2);
                         break;
                     case "5":
@@ -174,11 +99,5 @@ public class AdvertentieService {
                 adDao.remove(ad);
             }
         }
-    }
-
-    public List<Advertentie> simpelAdsZoeken() {
-        System.out.println("Op welk advertentienaam wilt u zoeken?");
-        String zoeken = scanner.nextLine();
-        return adDao.findByName(zoeken);
     }
 }

@@ -36,5 +36,4 @@ public class AdvertentieDao extends Dao<Advertentie, Long> {
         } catch (NoResultException e) { return null;
         }
     }
-
 }
